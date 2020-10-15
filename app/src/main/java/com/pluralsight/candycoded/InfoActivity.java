@@ -12,6 +12,8 @@ import com.squareup.picasso.Picasso;
 
 public class InfoActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,27 +24,15 @@ public class InfoActivity extends AppCompatActivity {
         Picasso.with(this).
                 load(uri).
                 into(candyStoreImageView);
-
-
-    }
-
-    public void createPhoneIntent(View view) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        startActivity(intent);
     }
 
     public void createMapIntent(View view){
-        Intent intent = new Intent(Intent.ACTION_VIEW).setPackage("com.google.android.apps.maps");
         Uri uri = Uri.parse("geo:0,0?q=618 E South St Orlando, FL 32801");
-        intent.setData(uri);
-
-
-        intent.resolveActivity(getPackageManager());
-        startActivity(intent);
-//        }else{
-//            Toast.makeText(this, "No Map client is available", Toast.LENGTH_SHORT).show();
-//        }
-
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        if (mapIntent.resolveActivity(getPackageManager()) != null){
+            startActivity(mapIntent);
+        }
     }
 
 

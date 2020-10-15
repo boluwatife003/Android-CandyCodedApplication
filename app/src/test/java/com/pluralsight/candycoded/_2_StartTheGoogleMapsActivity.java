@@ -69,7 +69,7 @@ public class _2_StartTheGoogleMapsActivity {
             try {
                 infoActivity.onCreate(bundle);
             } catch (Exception e) {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
 
             PowerMockito.doReturn(mockPackageManager).when(infoActivity, "getPackageManager");
